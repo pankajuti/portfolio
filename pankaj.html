@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Portfolio • Single File</title>
+  <meta name="description" content="Personal portfolio: name, career, experience, projects (auto from GitHub), college, resume, contact, about." />
+  <meta property="og:title" content="My Portfolio" />
+  <meta property="og:description" content="Single‑file portfolio connected to GitHub projects." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🚀</text></svg>">
+  <style>
+    :root{
+      --bg:#0b1020; --panel:#121a36; --soft:#1d2750; --text:#e6e9f5; --muted:#a7b0d2; --brand:#6aa4ff; --accent:#9bffd6;
+      --radius:18px; --shadow:0 10px 30px rgba(0,0,0,.25);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial; color:var(--text);background:radial-gradient(1200px 600px at 15% -10%, #1e2b5c22 0, transparent 60%), radial-gradient(1200px 600px at 85% 110%, #0aa69022 0, transparent 60%), var(--bg)}
+    a{color:var(--brand);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:1100px;margin-inline:auto;padding:28px}
+    header{position:sticky;top:0;background:linear-gradient(180deg, rgba(11,16,32,.9), rgba(11,16,32,.6));backdrop-filter: blur(6px); z-index:20;border-bottom:1px solid #ffffff0f}
+    .nav{display:flex;align-items:center;gap:18px;justify-content:space-between}
+    .nav a{padding:10px 14px;border-radius:12px}
+    .nav a:hover{background:#ffffff10}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--accent));box-shadow:var(--shadow)}
+    .title{font-weight:700;letter-spacing:.2px}
+
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:26px;align-items:center;padding:30px 0 10px}
+    .card{background:linear-gradient(180deg, var(--panel), var(--soft));border:1px solid #ffffff10;border-radius:var(--radius);box-shadow:var(--shadow)}
+    .card .pad{padding:24px}
+    .headline{font-size:clamp(26px, 4vw, 44px);line-height:1.15;margin:0 0 10px}
+    .sub{color:var(--muted);margin:4px 0 16px}
+    .btns{display:flex;flex-wrap:wrap;gap:10px}
+    .btn{display:inline-flex;align-items:center;gap:8px;border:1px solid #ffffff18;padding:10px 14px;border-radius:14px;background:#ffffff08}
+    .btn.primary{background:linear-gradient(135deg,var(--brand),#7bc6ff); color:#0b1020;font-weight:700}
+    .badge{display:inline-flex;gap:8px;align-items:center;padding:6px 10px;border:1px dashed #ffffff24;border-radius:999px;color:var(--muted);font-size:12px}
+
+    section{scroll-margin-top:84px}
+    .grid{display:grid;gap:18px}
+    .grid.two{grid-template-columns:repeat(2,1fr)}
+    .grid.three{grid-template-columns:repeat(3,1fr)}
+    @media (max-width:900px){.hero{grid-template-columns:1fr}.grid.two,.grid.three{grid-template-columns:1fr}}
+
+    .item h3{margin:0 0 8px}
+    .muted{color:var(--muted)}
+    .pill{display:inline-block;background:#ffffff10;border:1px solid #ffffff1a;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px}
+    .footer{color:var(--muted);text-align:center;padding:38px 0}
+    .contact-card form{display:grid;gap:12px}
+    input, textarea{background:#0e1430;border:1px solid #ffffff1a;border-radius:12px;padding:12px;color:var(--text)}
+    input::placeholder, textarea::placeholder{color:#90a0c6}
+    .note{font-size:13px;color:var(--muted)}
+    .tag{font-size:12px;color:#90a0c6;margin-left:8px}
+    .chip{font-weight:600;color:#0b1020;background:var(--accent);border-radius:999px;padding:2px 8px;margin-left:6px}
+    .kicker{letter-spacing:.18em;text-transform:uppercase;color:#9fb8ff;font-weight:700;font-size:12px}
+    .timeline{border-left:2px dashed #ffffff2a;margin-left:10px;padding-left:18px}
+    .timeline .t{margin:0 0 18px}
+    .hr{height:1px;background:#ffffff14;margin:22px 0;border-radius:2px}
+    .repo{display:flex;flex-direction:column;gap:8px}
+    .repo .top{display:flex;justify-content:space-between;gap:10px}
+  </style>
+</head>
+<body>
+  <!-- ====== CONFIG (Edit these values) ====== -->
+  <script>
+    const CONFIG = {
+      name: "Pankaj Kumar Jha",
+      role: "Java / Spring Boot Developer",
+      location: "India",
+      githubUsername: "portfolio",
+      linkedin: "https://www.linkedin.com/in/your-profile",
+      email: "pankajkumarwebncr.com",
+      phone: "+91-7562920839",
+      resumeURL: "resume.pdf", // put your file in the same repo or full URL
+      college: {
+        name: "Ghanshyama Hemalata Instititute Of Technology & Management",
+        degree: "B.Tech in Electrical ",
+        years: "2009 – 2013"
+      },
+      skills: ["Java", "Spring Boot", "REST API", "MySQL", "Hibernate", "Docker", "AWS Basics"],
+      experience: [
+        {
+          company: "Webearn Solution Pvt Ltd.",
+          role: "Backend Developer",
+          period: "August 2020 – Sep 2023",
+          points: [
+            "Designed RESTful APIs and improved performance by 30% with caching.",
+            "Built microservices with Spring Cloud and Kafka for async processing.",
+            "Deployed on AWS ECS; implemented CI/CD with GitHub Actions."
+          ]
+        },
+        {
+          company: "Company B",
+          role: "Java Developer Intern",
+          period: "Jun 2022 – Dec 2022",
+          points: [
+            "Implemented features across service and repository layers.",
+            "Wrote unit/integration tests; raised code coverage to 85%."
+          ]
+        }
+      ]
+    };
+  </script>
+
+  <!-- ====== NAV ====== -->
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <div class="title" id="navName">Your Name</div>
+          <div class="muted" id="navRole">Your Role</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#education">College</a>
+        <a href="#resume">Resume</a>
+        <a href="#contact">Contact</a>
+        <a id="ghLink" target="_blank" rel="noopener"> GitHub ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- ====== HERO ====== -->
+    <section class="hero">
+      <div class="card">
+        <div class="pad">
+          <div class="badge"><span class="kicker">नमस्ते</span> • Hello from <span id="heroLoc">India</span></div>
+          <h1 class="headline" id="heroTitle">Your Name — Your Role</h1>
+          <p class="sub">I craft reliable backends with Java & Spring Boot, design scalable REST APIs, and love turning ideas into production‑ready services.</p>
+          <div class="btns">
+            <a class="btn primary" id="btnResume" href="#resume">View Resume</a>
+            <a class="btn" id="btnGitHub" target="_blank" rel="noopener">GitHub Profile</a>
+            <a class="btn" id="btnLinkedIn" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="pad">
+          <h3 style="margin:0 0 12px">Quick Facts</h3>
+          <div class="hr"></div>
+          <div><strong>Location:</strong> <span id="loc"></span></div>
+          <div><strong>Email:</strong> <a id="mail"></a></div>
+          <div><strong>Phone:</strong> <span id="phone"></span></div>
+          <div style="margin-top:8px">
+            <strong>Skills:</strong>
+            <div id="skills"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== ABOUT ====== -->
+    <section id="about" class="card">
+      <div class="pad">
+        <div class="kicker">About Me / मेरे बारे में</div>
+        <h2 style="margin:6px 0 6px">Who I am</h2>
+        <p class="muted">Backend engineer focused on clean architecture, testability, and performance. Comfortable across API design, data modeling, and DevOps workflows.</p>
+      </div>
+    </section>
+
+    <!-- ====== EXPERIENCE ====== -->
+    <section id="experience" class="card">
+      <div class="pad">
+        <div class="kicker">Experience / अनुभव</div>
+        <h2 style="margin:6px 0 12px">Work History</h2>
+        <div id="expList" class="timeline"></div>
+      </div>
+    </section>
+
+    <!-- ====== PROJECTS (Auto from GitHub) ====== -->
+    <section id="projects" class="card">
+      <div class="pad">
+        <div class="kicker">Projects / प्रोजेक्ट्स</div>
+        <h2 style="margin:6px 0 12px">Featured & Recent Repos</h2>
+        <p class="note">Auto‑loaded from your GitHub public repos. Edit <code>githubUsername</code> in CONFIG. Shows top stars & recent updates.</p>
+        <div class="grid three" id="repoGrid"></div>
+      </div>
+    </section>
+
+    <!-- ====== EDUCATION ====== -->
+    <section id="education" class="card">
+      <div class="pad">
+        <div class="kicker">Education / कॉलेज</div>
+        <h2 style="margin:6px 0 12px">College</h2>
+        <div id="college"></div>
+      </div>
+    </section>
+
+    <!-- ====== RESUME ====== -->
+    <section id="resume" class="card">
+      <div class="pad">
+        <div class="kicker">Resume / बायोडाटा</div>
+        <h2 style="margin:6px 0 12px">Download</h2>
+        <p class="muted">Place your <code>resume.pdf</code> in the repository (or change the URL).
+        </p>
+        <a class="btn primary" id="downloadResume" download>Download Resume</a>
+        <span class="tag">PDF</span>
+      </div>
+    </section>
+
+    <!-- ====== CONTACT ====== -->
+    <section id="contact" class="card contact-card">
+      <div class="pad">
+        <div class="kicker">Contact / संपर्क</div>
+        <h2 style="margin:6px 0 12px">Contact Me</h2>
+        <form id="contactForm">
+          <input type="text" name="name" placeholder="Your name" required>
+          <input type="email" name="email" placeholder="Your email" required>
+          <textarea name="message" rows="5" placeholder="Your message" required></textarea>
+          <button class="btn primary" type="submit">Send</button>
+          <div class="note">This uses <code>mailto:</code>. For a real backend, connect a service (Formspree, Firebase, or your API).</div>
+        </form>
+      </div>
+    </section>
+
+    <div class="footer">© <span id="y"></span> <span id="ftrName"></span> · Built with ♥ and GitHub Pages</div>
+  </main>
+
+  <script>
+    // ====== Populate content from CONFIG ======
+    const $ = (s)=>document.querySelector(s);
+    function text(id,v){const el=$(id); if(el) el.textContent=v}
+
+    function render(){
+      text('#navName', CONFIG.name);
+      text('#navRole', CONFIG.role);
+      text('#heroTitle', `${CONFIG.name} — ${CONFIG.role}`);
+      text('#heroLoc', CONFIG.location);
+      text('#loc', CONFIG.location);
+      text('#phone', CONFIG.phone);
+      $('#mail').href = `mailto:${CONFIG.email}`;
+      $('#mail').textContent = CONFIG.email;
+      $('#btnGitHub').href = `https://github.com/${CONFIG.githubUsername}`;
+      $('#btnLinkedIn').href = CONFIG.linkedin;
+      $('#btnResume').href = CONFIG.resumeURL;
+      $('#downloadResume').href = CONFIG.resumeURL;
+      $('#ghLink').href = `https://github.com/${CONFIG.githubUsername}`;
+      text('#ftrName', CONFIG.name);
+      text('#y', new Date().getFullYear());
+
+      // Skills
+      $('#skills').innerHTML = CONFIG.skills.map(s=>`<span class="pill">${s}</span>`).join('');
+
+      // College
+      $('#college').innerHTML = `
+        <div class="item">
+          <h3>${CONFIG.college.name}</h3>
+          <div class="muted">${CONFIG.college.degree} <span class="chip">${CONFIG.college.years}</span></div>
+        </div>`;
+
+      // Experience
+      $('#expList').innerHTML = CONFIG.experience.map(e=>`
+        <div class="t">
+          <h3>${e.role} – ${e.company}</h3>
+          <div class="muted">${e.period}</div>
+          <ul style="margin-top:8px">${e.points.map(p=>`<li>${p}</li>`).join('')}</ul>
+        </div>
+      `).join('');
+    }
+
+    // ====== Fetch GitHub Repos ======
+    async function loadRepos(){
+      const user = CONFIG.githubUsername?.trim();
+      if(!user){ $('#repoGrid').innerHTML = `<div class="note">Set <code>githubUsername</code> to load repositories.</div>`; return; }
+      try{
+        const [reposRes] = await Promise.all([
+          fetch(`https://api.github.com/users/${user}/repos?per_page=100`,{headers:{'Accept':'application/vnd.github+json'}})
+        ]);
+        if(!reposRes.ok) throw new Error('GitHub API error');
+        let repos = await reposRes.json();
+        // Sort by stars then recent push
+        repos = repos
+          .filter(r=>!r.fork)
+          .sort((a,b)=> (b.stargazers_count - a.stargazers_count) || (new Date(b.pushed_at) - new Date(a.pushed_at)))
+          .slice(0,9);
+        if(repos.length===0){
+          $('#repoGrid').innerHTML = `<div class="note">No public repositories found.</div>`; return;
+        }
+        $('#repoGrid').innerHTML = repos.map(r=>`
+          <div class="card repo">
+            <div class="pad">
+              <div class="top">
+                <h3 style="margin:0"><a href="${r.html_url}" target="_blank" rel="noopener">${r.name}</a></h3>
+                <span class="pill" title="Stars">★ ${r.stargazers_count}</span>
+              </div>
+              <div class="muted">${r.description || '—'}</div>
+              <div class="hr"></div>
+              <div class="muted">Updated: ${new Date(r.pushed_at).toLocaleDateString()}</div>
+              <div>
+                ${r.language ? `<span class="pill">${r.language}</span>` : ''}
+                ${r.topics?.slice(0,3).map(t=>`<span class='pill'>#${t}</span>`).join('') || ''}
+              </div>
+            </div>
+          </div>
+        `).join('');
+      }catch(err){
+        console.error(err);
+        $('#repoGrid').innerHTML = `<div class="note">Could not load repositories (rate limit?). Try again later.</div>`;
+      }
+    }
+
+    // ====== Contact form (mailto:) ======
+    $('#contactForm').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const data = new FormData(e.target);
+      const name = encodeURIComponent(data.get('name'));
+      const from = encodeURIComponent(data.get('email'));
+      const msg  = encodeURIComponent(data.get('message'));
+      const subject = `Portfolio Contact from ${name}`;
+      const body = `From: ${from}%0D%0A%0D%0A${msg}`;
+      window.location.href = `mailto:${CONFIG.email}?subject=${subject}&body=${body}`;
+      e.target.reset();
+    });
+
+    // Init
+    render();
+    loadRepos();
+  </script>
+</body>
+</html>
